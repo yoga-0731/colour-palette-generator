@@ -1,4 +1,4 @@
-             <!doctype html>
+<!doctype html>
 <head>
 	<title>Image Color Palette Generator</title>
 </head>
@@ -8,21 +8,27 @@
 		{% with messages = get_flashed_messages() %}
 		  {% if messages %}
 			<ul>
-			{% for message in messages %}
-			  <li>{{ message }}</li>
-			{% endfor %}
+				{% for message in messages %}
+				  <li>{{ message }}</li>
+				{% endfor %}
 			</ul>
 		  {% endif %}
 		{% endwith %}
 	</p>
+
 	{% if filename %}
-		<div>
-			<img src="{{ url_for('display_image', filename=filename) }}">
-			<div>
-				<h5>{{ url_for('display_colors', filename=filename) }}</h5>
-			</div>
-		</div>
+		<img src="{{ url_for('display_image', filename=filename) }}">
 	{% endif %}
+
+	{% if colors %}
+		<h3>10 colors from the picture are listed below:</h3>
+		{% for color in colors: %}
+			<ul>
+				<li>{{ color }}</li>
+			</ul>
+		{% endfor %}
+	{% endif %}
+
 	<form method="post" action="/" enctype="multipart/form-data">
 		<dl>
 			<p>
