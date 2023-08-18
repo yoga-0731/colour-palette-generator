@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<h2>Upload an image</h2>
+	<h2 style="text-align: center;">Upload an image</h2>
 	<p>
 		{% with messages = get_flashed_messages() %}
 		  {% if messages %}
@@ -22,7 +22,7 @@
 
 	{% if colors %}
 		<h3>10 colors from the picture are listed below:</h3>
-		<table>
+		<table align="center">
 			<tr>
 				{% for color in colors: %}
 					<th>{{ color.capitalize() }}</th>
@@ -30,13 +30,14 @@
 			</tr>
 			<tr>
 				{% for color in colors: %}
-					<td style='background-color: #"{{colors[color]}}"'></td>
+					<td bgcolor="{{colors[color]}}"></td>
 				{% endfor %}
 			</tr>
 		</table>
 	{% endif %}
 
-	<form method="post" action="/" enctype="multipart/form-data">
+	<br/>
+	<form method="post" action="/" enctype="multipart/form-data" style="text-align:center;">
 		<dl>
 			<p>
 				<input type="file" name="file" autocomplete="off" required>
