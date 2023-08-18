@@ -1,0 +1,23 @@
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    width: 150px;
+}
+
+td {
+    height: 50px;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

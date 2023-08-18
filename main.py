@@ -61,13 +61,13 @@ def closest_colour(requested_colour):
 
 def image_colors(filename):
     rgb_colors = colorgram.extract('static/images/'+filename, MAX_COLOURS)
-    colors = []
+    colors = {}
     for color in rgb_colors:
         rgb_color = (color.rgb.r, color.rgb.b, color.rgb.b)
         try:
-            colors.append(webcolors.rgb_to_name(rgb_color, spec='css3'))
+            colors[webcolors.rgb_to_name(rgb_color, spec='css3')] = webcolors.rgb_to_hex(rgb_color)
         except ValueError:
-            colors.append(closest_colour(rgb_color))
+            colors[closest_colour(rgb_color)] = webcolors.rgb_to_hex(rgb_color)
     # print(colors)
     return colors
 

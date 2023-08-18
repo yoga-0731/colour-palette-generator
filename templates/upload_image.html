@@ -1,32 +1,39 @@
 <!doctype html>
 <head>
 	<title>Image Color Palette Generator</title>
+	<link rel="stylesheet" href="./static/css/styles.css">
 </head>
+
 <body>
 	<h2>Upload an image</h2>
 	<p>
 		{% with messages = get_flashed_messages() %}
 		  {% if messages %}
-			<ul>
-				{% for message in messages %}
-				  <li>{{ message }}</li>
-				{% endfor %}
-			</ul>
+			{% for message in messages %}
+			  <div>{{ message }}</div>
+			{% endfor %}
 		  {% endif %}
 		{% endwith %}
 	</p>
 
 	{% if filename %}
-		<img src="{{ url_for('display_image', filename=filename) }}">
+		<img src="{{ url_for('display_image', filename=filename) }}" class="center">
 	{% endif %}
 
 	{% if colors %}
 		<h3>10 colors from the picture are listed below:</h3>
-		{% for color in colors: %}
-			<ul>
-				<li>{{ color }}</li>
-			</ul>
-		{% endfor %}
+		<table>
+			<tr>
+				{% for color in colors: %}
+					<th>{{ color.capitalize() }}</th>
+				{% endfor %}
+			</tr>
+			<tr>
+				{% for color in colors: %}
+					<td style='background-color: #"{{colors[color]}}"'></td>
+				{% endfor %}
+			</tr>
+		</table>
 	{% endif %}
 
 	<form method="post" action="/" enctype="multipart/form-data">
