@@ -11,7 +11,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-MAX_COLOURS = 10
+MAX_COLOURS = 500
 
 
 def allowed_file(filename):
@@ -37,7 +37,7 @@ def upload_image():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('Image successfully uploaded and displayed below')
         colors = image_colors(filename)
-        return render_template('upload_image.html', filename=filename, colors=colors)
+        return render_template('upload_image.html', filename=filename, colors=colors, color_count=0)
     else:
         flash('Allowed image types are -> png, jpg, jpeg, gif')
         return redirect(request.url)

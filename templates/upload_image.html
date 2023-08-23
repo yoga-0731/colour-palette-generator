@@ -21,18 +21,28 @@
 	{% endif %}
 
 	{% if colors %}
-		<h3>10 colors from the picture are listed below:</h3>
+		<h3>All colors from the picture are listed below:</h3>
+		{% set colors_list = colors.items() | list %}
+		{% set colors_length = colors | length %}
+		{% set color_count = namespace(value=0) %}
+
 		<table align="center">
-			<tr>
-				{% for color in colors: %}
-					<th>{{ color.capitalize() }}</th>
-				{% endfor %}
-			</tr>
-			<tr>
-				{% for color in colors: %}
-					<td bgcolor="{{colors[color]}}"></td>
-				{% endfor %}
-			</tr>
+			{% for _ in range(((colors_length // 10) + (colors_length % 10 > 0)) | round): %}
+
+				<tr>
+<!--					{{ color_count.value }}-->
+					{% for color in colors_list[color_count.value:color_count.value+10]: %}
+						<th>{{ color[0].capitalize() }}</th>
+					{% endfor %}
+				</tr>
+				<tr>
+					{% for color in colors_list[color_count.value:color_count.value+10]: %}
+						<td bgcolor="{{color[1]}}"></td>
+					{% endfor %}
+				</tr>
+
+				{% set color_count.value = color_count.value + 10 %}
+			{% endfor %}
 		</table>
 	{% endif %}
 
