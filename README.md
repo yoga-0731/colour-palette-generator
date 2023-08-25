@@ -3,5 +3,6 @@ A fun and useful Python Flask application where we could upload an image and kno
 
 ## Functionality
   - Upload any image.
-  - Using colorgram module, the colors are extracted. If colorgram is unable to extract the color, the closest color to the former is chosen. And all these are converted to hex code.
+  - Using colorgram module, the colors are extracted. If colorgram is unable to extract the color, the closest color to the former is chosen.
+  - Using webcolor module, all the extracted colors are converted to hex code.
   - Image and all colors from the image are displayed.
